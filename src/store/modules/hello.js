@@ -15,11 +15,11 @@ export const hello = {
   //数据逻辑
   actions: {
     async sayHello({ dispatch, commit, state, rootState }, params) {
-      let { firstName, lastName } = params;
+      let { name } = params;
       //TODO:await api
       return new Promise(resolve => {
         setTimeout(() => {
-          let ret = 'hello ' + lastName + ' ' + firstName;
+          let ret = 'hello ' + name;
           console.log('hello');
           resolve(ret);
         }, 3000);
