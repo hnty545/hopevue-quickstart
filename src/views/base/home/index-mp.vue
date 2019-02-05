@@ -57,7 +57,7 @@ export default {
     onSayHello() {
       LoadingTask.init(this, this.$options.name).execute(
         this.sayHello,
-        { firstName: "B", lastName: "S" },
+        { name: "guys" },
         ret => {
           NotifyHelper.success(ret);
         }
