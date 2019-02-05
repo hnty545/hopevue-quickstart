@@ -1,5 +1,7 @@
 # hopevue
 
+https://github.com/hnty545/hopevue-quickstart
+
 hopevue 是支持 H5 与微信小程序（MP）跨平台的开发与构建框架。基本思想是数据层、逻辑层复用，UI 界面各自独立实现。
 
 - `mpvue`：通过 mpvue 获得使用 vue 编写 MP 的体验。
