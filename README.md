@@ -40,9 +40,9 @@ package.json 中定义了若干命令
 
 - 在 config 下的 base.env.js、dev.env.js、test.env.js、prod.env.js 中定义了若干环境变量。
 
-  `RUN_TYPE`：编译方式 [ build 、 dev ]  
-  `TARGET_PLATFORM`：编译平台 [ h5 、 mp ]  
-  `NODE_ENV`：接口环境 [ development 、 testing 、 production ]  
+  `RUN_TYPE`：编译方式 [ build、dev ]  
+  `TARGET_PLATFORM`：编译平台 [ h5、mp ]  
+  `NODE_ENV`：接口环境 [ development、testing、production ]  
   `CUSTOM_PARAMS`：自定义参数，其中`DEBUG` 在 RUN_TYPE = build & NODE_ENV = productiond 时为 true，其他为 false；`baseURL`是解析之后的接口地址；`debugApiPath`是解析之后接口代理名称。
   `*已存在的参数不要修改`
 
