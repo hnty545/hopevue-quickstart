@@ -23,7 +23,7 @@ package.json 中定义了若干命令
   调试：dev-[环境 dev、test、prod]  
   打包：build-[环境 dev-test-prod]
 - MP  
-  调试：暂时还没有调试方法
+  调试：暂时还没有调试方法  
   打包：build-[环境 dev、test、prod]-mp
 
 ### 构建入口
