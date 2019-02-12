@@ -13,9 +13,7 @@ import VueCookies from 'vue-cookies';
 import 'amfe-flexible';
 import './style/normalize.css';
 import './style/vant-var.less';
-
-//是否允许调试工具
-Vue.config.devtools = process.env.CUSTOM_PARAMS.DEBUG;
+import './style/ui-common.scss';
 
 //注册全局方法
 Object.keys(filters).forEach(key => {

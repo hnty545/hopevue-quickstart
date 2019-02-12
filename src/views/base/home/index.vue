@@ -1,7 +1,7 @@
 <template>
   <div>
     <MyTitle title="主界面" :btns="[{icon:'arrow',onClick:goto}]"/>
-    <div class="content">
+    <div class="ui-container ui-form content">
       <van-row class="info-row">
         <van-col span="24">{{today}}</van-col>
       </van-row>
