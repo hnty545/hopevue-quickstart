@@ -212,7 +212,7 @@ class NetHelper {
           }
         } else if (response.data instanceof Object) {
           //JsonObject
-          if (response.data.errors) {
+          if (!response.data.success || response.data.errors) {
             let { code, message, data } = {
               code: response.data.resultCode,
               message: response.data.resultMsg,
