@@ -1,5 +1,5 @@
 <template>
-  <van-popup v-model="show" close-on-click-overlay="false" class="loading-dialog">
+  <van-popup v-model="show" :close-on-click-overlay="false" class="loading-dialog">
     <van-loading color="white" class="loading-spin"/>
     <div class="loading-text">{{loadingMsg}}</div>
   </van-popup>
@@ -20,8 +20,7 @@ export default {
       },
       set: function() {}
     }
-  },
-  methods: {}
+  }
 };
 </script>
 
