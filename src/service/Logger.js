@@ -11,14 +11,10 @@ export default {
     }
   },
   async info(tag, ...args) {
-    if (level === 'debug' || this.level === 'info') {
-      console.info(this.time(), '[' + tag + ']', ...args);
-    }
+    console.info(this.time(), '[' + tag + ']', ...args);
   },
   async warn(tag, ...args) {
-    if (level === 'debug' || this.level === 'info' || this.level === 'warn') {
-      console.warn(this.time(), '[' + tag + ']', ...args);
-    }
+    console.warn(this.time(), '[' + tag + ']', ...args);
   },
   async error(tag, ...args) {
     console.error(this.time(), '[' + tag + ']', ...args);

@@ -57,26 +57,17 @@ class NetHelper {
       });
       _client.interceptors.request.use(
         config => {
-          let { method, url, params, data, background } = config;
-          if (process.env.CUSTOM_PARAMS.DEBUG) {
-            let _data = {};
-            if (data) {
-              //POST
-              for (let [k, v] of Object.entries(data)) {
-                _data[k] = v;
-              }
-            }
-            logger.debug(
-              this.TAG,
-              `[req][${config.apiName}]`,
-              method,
-              url,
-              params || _data
-            );
-          }
-          if (!background) {
-            // store.dispatch(reducerLoadingStart());
-          }
+          // let { method, url, params, data, background } = config;
+          // let _data = {};
+          // if (data) {
+          //   //POST
+          //   for (let [k, v] of Object.entries(data)) {
+          //     _data[k] = v;
+          //   }
+          // }
+          // if (!background) {
+          // store.dispatch(reducerLoadingStart());
+          // }
           return config;
         },
         error => {
@@ -90,21 +81,20 @@ class NetHelper {
           let {
             status,
             data,
+            // eslint-disable-next-line
             config: { url, background }
           } = response;
           let { path } = parse(url);
-          if (process.env.CUSTOM_PARAMS.DEBUG) {
-            logger.debug(
-              this.TAG,
-              `[resp][${response.config.apiName}]`,
-              status,
-              path,
-              data
-            );
-          }
-          if (!background) {
-            // store.dispatch(reducerLoadingEnd());
-          }
+          logger.debug(
+            this.TAG,
+            `[resp][${response.config.apiName}]`,
+            status,
+            path,
+            data
+          );
+          // if (!background) {
+          // store.dispatch(reducerLoadingEnd());
+          // }
           return response;
         },
         error => {
@@ -157,6 +147,7 @@ class NetHelper {
       allowEmpty: false
     }
   ) {
+    logger.debug(this.TAG, `[req][${apiName}]`, 'GET', url, params);
     return this._requestApi({
       apiName,
       url,
@@ -182,6 +173,7 @@ class NetHelper {
       allowEmpty: false
     }
   ) {
+    logger.debug(this.TAG, `[req][${apiName}]`, 'POST', url, data);
     let formData = null;
     if (data) {
       formData = new FormData();
