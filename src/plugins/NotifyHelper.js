@@ -22,7 +22,9 @@ export default {
       this._Notify({
         message: message,
         duration: duration | this._config.duration,
-        background: THEME.error
+        background: THEME.error,
+        text: message, //vant-weapp
+        backgroundColor: THEME.error //vant-weapp
       });
     } else {
       console.warn('NotifyHelper no init');
@@ -33,7 +35,9 @@ export default {
       this._Notify({
         message: message,
         duration: duration | this._config.duration,
-        background: THEME.info
+        background: THEME.info,
+        text: message, //vant-weapp
+        backgroundColor: THEME.info //vant-weapp
       });
     } else {
       console.warn('NotifyHelper no init');
@@ -44,7 +48,9 @@ export default {
       this._Notify({
         message: message,
         duration: duration | this._config.duration,
-        background: THEME.success
+        background: THEME.success,
+        text: message, //vant-weapp
+        backgroundColor: THEME.success //vant-weapp
       });
     } else {
       console.warn('NotifyHelper no init');
@@ -55,7 +61,9 @@ export default {
       this._Notify({
         message: message,
         duration: duration | this._config.duration,
-        background: THEME.warning
+        background: THEME.warning,
+        text: message, //vant-weapp
+        backgroundColor: THEME.warning //vant-weapp
       });
     } else {
       console.warn('NotifyHelper no init');

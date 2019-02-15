@@ -3,6 +3,7 @@ import axios from 'axios';
 import querystring from 'querystring';
 import { parse } from 'url';
 import { ApiHttpError, ApiResultError } from './Error';
+import { COOKIES_KEY } from '../config/constants';
 import logger from '../service/Logger';
 
 let baseURL;
@@ -15,11 +16,32 @@ let wxAdapter;
 if (process.env.TARGET_PLATFORM === 'mp') {
   wxAdapter = function(config) {
     return new Promise((resolve, reject) => {
+      if (wx.getStorageSync(COOKIES_KEY.sessionid)) {
+        config.headers = {
+          ...config.headers,
+          cookie: wx.getStorageSync(COOKIES_KEY.sessionid)
+        };
+      }
+      if (config.method === 'post') {
+        config.headers = {
+          ...config.headers,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        };
+      }
       wx.request({
         method: config.method,
         header: config.headers,
         url: config.url,
-        data: config.params,
+        data: config.params || JSON.parse(config.data),
+        success: response => {
+          var cookie = response.header['Set-Cookie'];
+          if (cookie) {
+            wx.setStorageSync(
+              COOKIES_KEY.sessionid,
+              response.header['Set-Cookie']
+            );
+          }
+        },
         complete: response => {
           response = {
             ...response,
@@ -27,7 +49,8 @@ if (process.env.TARGET_PLATFORM === 'mp') {
             status: response.statusCode
           };
           if (response.statusCode < 200 || response.statusCode > 300) {
-            return reject(response || {});
+            let ret = { ...response, message: response.errMsg };
+            return reject(ret || {});
           }
           return resolve(response || {});
         }
@@ -176,9 +199,13 @@ class NetHelper {
     logger.debug(this.TAG, `[req][${apiName}]`, 'POST', url, data);
     let formData = null;
     if (data) {
-      formData = new FormData();
-      for (let [k, v] of Object.entries(data)) {
-        formData.append(k, v);
+      if (process.env.TARGET_PLATFORM === 'mp') {
+        formData = data;
+      } else {
+        formData = new FormData();
+        for (let [k, v] of Object.entries(data)) {
+          formData.append(k, v);
+        }
       }
     }
     return this._requestApi({

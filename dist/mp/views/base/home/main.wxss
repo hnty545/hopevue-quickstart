@@ -1,0 +1,31 @@
+
+.content.data-v-53b76295 {
+  text-align: center;
+}
+.info-row.data-v-53b76295 {
+  margin: 5px;
+  font-size: 14px;
+}
+
+.nav-bar {
+  background-color: #1989fa !important;
+  color: #fff !important;
+}
+
+.loading-dialog {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: rgba(26, 26, 26, 0.5) !important;
+  border-radius: 5px;
+}
+.loading-spin {
+  display: block !important;
+  margin: 0 auto !important;
+}
+.loading-text {
+  color: #eee;
+  margin-top: 5px;
+  font-size: 14px;
+}

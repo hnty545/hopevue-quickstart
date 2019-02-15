@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "views/base/home/main",
+    "views/util/publicweb/main"
+  ],
+  "window": {
+    "navigationBarTitleText": "小程序标题",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-button": "/static/vant-weapp/button/index",
+    "van-popup": "/static/vant-weapp/popup/index",
+    "van-row": "/static/vant-weapp/row/index",
+    "van-col": "/static/vant-weapp/col/index",
+    "van-icon": "/static/vant-weapp/icon/index",
+    "van-nav-bar": "/static/vant-weapp/nav-bar/index",
+    "van-notify": "/static/vant-weapp/notify/index",
+    "van-loading": "/static/vant-weapp/loading/index"
+  }
+}

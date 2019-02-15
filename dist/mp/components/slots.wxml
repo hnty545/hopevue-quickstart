@@ -1,0 +1,2 @@
+<import src="/components/common/MyTitle-mp.vue.wxml" />
+<import src="/components/common/MyLoading-mp.vue.wxml" />

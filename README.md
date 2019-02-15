@@ -66,7 +66,7 @@ package.json 中定义了若干命令
 - 在 components 下实现组件，通常也需要分 H5 和 MP 两个版本来实现。
 - H5 的 vant 组件已使用 `babel-plugin-import` 动态载入。
 - MP 的 weapp 组件在 static 下，通过 `App-mp.vue` 中 config 统一载入。
-  `*Notify组件修改了源码，改变了属性名与vant的一致`
+  `*field组件修改了源码，将click-icon事件改改为clickIcon，如遇上类似命名事件也需要如此修改，因为mpvue不支持带-的事件命名`
 - plugins 中提供了 `LoadingTask` 封装了界面加载提示，需要将界面中 `Notify` 传入 `initNotify(Notify)`来初始化。提供了 `NotifyHelper` 封装 vant 的 `Notify` 组件，可以在界面组件中调用，使用方法可看 demo 界面，同样需要将界面中 `Notify` 传入 `initNotify(Notify)`来初始化。
 
 ### 路由
