@@ -1,6 +1,0 @@
-<template name="5b96cbdd">
-  <van-popup show="{{show}}" close-on-click-overlay="{{false}}" custom-class="loading-dialog" class="_van-popup data-v-05c15a4f">
-    <van-loading color="white" custom-class="loading-spin" class="_van-loading data-v-05c15a4f"></van-loading>
-    <view class="_div data-v-05c15a4f loading-text">{{loadingMsg}}</view>
-  </van-popup>
-</template>

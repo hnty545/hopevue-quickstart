@@ -1,5 +1,0 @@
-<template name="572308fe">
-  <van-nav-bar title="{{title}}" left-arrow="{{btnBack}}" left-text="{{btnBackText}}" custom-class="nav-bar" bindclick-left="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_van-nav-bar data-v-ff24031a">
-    <van-icon slot="right" color="#fff" custom-style="padding-top: 14px;padding-bottom:14px;padding-left:10px;padding-right:10px;" name="{{item.icon}}" wx:key="index" key="{{index}}" bindtap="handleProxy" data-eventid="{{'0-'+index}}" data-comkey="{{$k}}" wx:for="{{btns}}" wx:for-index="index" wx:for-item="item" class="_van-icon data-v-ff24031a"></van-icon>
-  </van-nav-bar>
-</template>
