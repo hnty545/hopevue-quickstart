@@ -3,8 +3,9 @@
     :title="title"
     :left-arrow="btnBack"
     :left-text="btnBackText"
-    custom-class="nav-bar"
-    @click-left="_goBack"
+    :left-arrow-color="'#fff'"
+    custom-class="ui-inner-nav-bar"
+    @clickLeft="_goBack"
   >
     <van-icon
       slot="right"
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     _goBack() {
-      this.$router.go(-1);
+      this.$router.back();
     },
     _btnOnClick(btn) {
       if (btn.onClick) {
@@ -46,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-.nav-bar {
+.ui-inner-nav-bar {
   background-color: #1989fa !important;
   color: #fff !important;
 }

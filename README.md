@@ -66,7 +66,6 @@ package.json 中定义了若干命令
 - 在 components 下实现组件，通常也需要分 H5 和 MP 两个版本来实现。
 - H5 的 vant 组件已使用 `babel-plugin-import` 动态载入。
 - MP 的 weapp 组件在 static 下，通过 `App-mp.vue` 中 config 统一载入。
-  `*field组件修改了源码，将click-icon事件改改为clickIcon，如遇上类似命名事件也需要如此修改，因为mpvue不支持带-的事件命名`
 - plugins 中提供了 `LoadingTask` 封装了界面加载提示，需要将界面中 `Notify` 传入 `initNotify(Notify)`来初始化。提供了 `NotifyHelper` 封装 vant 的 `Notify` 组件，可以在界面组件中调用，使用方法可看 demo 界面，同样需要将界面中 `Notify` 传入 `initNotify(Notify)`来初始化。
 
 ### 路由
@@ -78,3 +77,12 @@ package.json 中定义了若干命令
 
 本人是 H5 技术的初学者，之前做过后台开发，现在主要是做安卓开发。对于 H5 技术栈，我主要学习途径是查阅各个技术框架的官方文档，以及从 git 上的开源项目吸取经验。  
 很庆幸有 github 这么好的开源学习环境，身边做 H5 开发的朋友不多，遇到问题在网络群里交流，或者从搜索引擎查询，有时候也很难得到解决，把官方文档的基础了解一遍再从开源项目入手，从各位大神的项目里学到很多，这种方式很有效率，让我比较快的入门。
+
+### mpvue+vant-weapp 踩坑
+
+在集成过程中遇到的一些问题：
+
+- mpvue 不支持带-的事件命名，比如 field 组件 click-icon 事件改为 clickIcon、nav-bar 组件 click-left 改为 clickLeft 等，如遇上类似事件命名也需要如此修改
+- nav-bar 组件增加 `left-arrow-color` 属性用来修改左箭头的颜色。
+- 在小程序里不支持双向绑定，虽然 mpvue 官方文档好像是支持是说 v-model，但是实际上没有起作用，所以组件中应该用 `:value` 类似方式来展现，并用 `change` 类似事件来改变 state。
+- 在事件中可以用 `e.mp.detail.value || e.mp.detail` 来得到值。不同的组件可以绑定到同一 `change` 事件上，在组件上用 `data-name` 标识，在事件中用 `e.mp.currentTarget.dataset.name` 来获取标识。

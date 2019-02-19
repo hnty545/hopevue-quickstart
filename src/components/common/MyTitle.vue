@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     _goBack() {
-      this.$router.go(-1);
+      this.$router.back();
     },
     _btnOnClick(btn) {
       if (btn.onClick) {

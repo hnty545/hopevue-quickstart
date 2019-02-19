@@ -7,6 +7,7 @@ VantComponent({
     leftText: String,
     rightText: String,
     leftArrow: Boolean,
+    leftArrowColor: String,
     border: {
       type: Boolean,
       value: true
@@ -18,10 +19,10 @@ VantComponent({
   },
   methods: {
     onClickLeft: function onClickLeft() {
-      this.$emit('click-left');
+      this.$emit('clickLeft');
     },
     onClickRight: function onClickRight() {
-      this.$emit('click-right');
+      this.$emit('clickRight');
     }
   }
 });

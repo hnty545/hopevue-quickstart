@@ -1,7 +1,7 @@
 <template>
-  <van-popup :show="show" :close-on-click-overlay="false" custom-class="loading-dialog">
-    <van-loading color="white" custom-class="loading-spin"/>
-    <div class="loading-text">{{loadingMsg}}</div>
+  <van-popup :show="show" :close-on-click-overlay="false" custom-class="ui-inner-loading-dialog">
+    <van-loading color="white" custom-class="ui-inner-loading-spin"/>
+    <div class="ui-inner-loading-text">{{loadingMsg}}</div>
   </van-popup>
 </template>
 
@@ -18,12 +18,12 @@ export default {
       },
       set: function() {}
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss">
-.loading-dialog {
+.ui-inner-loading-dialog {
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 25px;
@@ -31,11 +31,11 @@ export default {
   background-color: hsla(0, 0%, 10%, 0.5) !important;
   border-radius: 5px;
 }
-.loading-spin {
+.ui-inner-loading-spin {
   display: block !important;
   margin: 0 auto !important;
 }
-.loading-text {
+.ui-inner-loading-text {
   color: #eee;
   margin-top: 5px;
   font-size: 14px;
