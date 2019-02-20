@@ -86,3 +86,7 @@ package.json 中定义了若干命令
 - nav-bar 组件增加 `left-arrow-color` 属性用来修改左箭头的颜色。
 - 在小程序里不支持双向绑定，虽然 mpvue 官方文档好像是支持是说 v-model，但是实际上没有起作用，所以组件中应该用 `:value` 类似方式来展现，并用 `change` 类似事件来改变 state。
 - 在事件中可以用 `e.mp.detail.value || e.mp.detail` 来得到值。不同的组件可以绑定到同一 `change` 事件上，在组件上用 `data-name` 标识，在事件中用 `e.mp.currentTarget.dataset.name` 来获取标识。
+
+### 对 vant-weapp 的修改
+
+[简书](./vant-weapp修改记录.md)

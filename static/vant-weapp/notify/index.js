@@ -14,6 +14,10 @@ VantComponent({
     duration: {
       type: Number,
       value: 3000
+    },
+    paddingTop: {
+      type: String,
+      value: '0px'
     }
   },
   methods: {
@@ -27,7 +31,7 @@ VantComponent({
       });
 
       if (duration > 0 && duration !== Infinity) {
-        this.timer = setTimeout(function () {
+        this.timer = setTimeout(function() {
           _this.hide();
         }, duration);
       }

@@ -13,8 +13,8 @@
       </van-row>
       <van-button type="primary" @click="onSayHello" custom-class="ui-inner-info-row">sayHello</van-button>
     </MyContainer>
-    <van-notify id="van-notify"/>
     <MyLoading/>
+    <MyNotify/>
     <MyFloatActionButton color="#fff" bgcolor="#1989fa" icon="arrow" @click="goto"/>
   </div>
 </template>
@@ -26,11 +26,12 @@ import MyTitle from "../../../components/common/MyTitle-mp";
 import MyContainer from "../../../components/common/MyContainer-mp";
 import MyLoading from "../../../components/common/MyLoading-mp";
 import MyFloatActionButton from "../../../components/common/MyFloatActionButton-mp";
+import MyNotify from "../../../components/common/MyNotify-mp";
 import Notify from "../../../../static/vant-weapp/notify/notify";
 import NotifyHelper from "../../../plugins/NotifyHelper";
 import LoadingTask from "../../../plugins/LoadingTask";
-NotifyHelper.initNotify(Notify);
-LoadingTask.initNotify(Notify);
+NotifyHelper.initNotify(MyNotify.Notify);
+LoadingTask.initNotify(MyNotify.Notify);
 
 export default {
   name: "home",
@@ -39,7 +40,8 @@ export default {
     MyTitle,
     MyContainer,
     MyLoading,
-    MyFloatActionButton
+    MyFloatActionButton,
+    MyNotify
   },
   computed: {
     ...mapState("common", ["today"]),

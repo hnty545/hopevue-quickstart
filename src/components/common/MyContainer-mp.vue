@@ -17,8 +17,10 @@ export default {
     _class: function() {
       return (
         (this.systemInfo.isIpx
-          ? "ui-inner-container-ipx "
-          : "ui-inner-container ") + this.customClass
+          ? "ui-inner-container-ipx"
+          : "ui-inner-container") +
+        " " +
+        this.customClass
       );
     }
   },
