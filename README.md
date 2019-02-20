@@ -89,4 +89,4 @@ package.json 中定义了若干命令
 
 ### 对 vant-weapp 的修改
 
-[简书](./vant-weapp修改记录.md)
+[vant-weapp 修改记录](./vant-weapp修改记录.md)
