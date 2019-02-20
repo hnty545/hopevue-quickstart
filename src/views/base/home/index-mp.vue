@@ -13,8 +13,8 @@
       </van-row>
       <van-button type="primary" @click="onSayHello" custom-class="ui-inner-info-row">sayHello</van-button>
     </MyContainer>
-    <MyLoading/>
     <MyNotify/>
+    <MyLoading/>
     <MyFloatActionButton color="#fff" bgcolor="#1989fa" icon="arrow" @click="goto"/>
   </div>
 </template>
@@ -39,9 +39,9 @@ export default {
   components: {
     MyTitle,
     MyContainer,
+    MyNotify,
     MyLoading,
-    MyFloatActionButton,
-    MyNotify
+    MyFloatActionButton
   },
   computed: {
     ...mapState("common", ["today"]),
