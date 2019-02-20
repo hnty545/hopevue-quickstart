@@ -1,5 +1,11 @@
 <template>
-  <van-nav-bar :title="title" :left-arrow="btnBack" @click-left="_goBack" :left-text="btnBackText">
+  <van-nav-bar
+    :fixed="fixed"
+    :title="title"
+    :left-arrow="btnBack"
+    :left-text="btnBackText"
+    @click-left="_goBack"
+  >
     <van-icon
       slot="right"
       color="#fff"
@@ -20,7 +26,7 @@ import logger from "../../service/Logger";
 export default {
   name: "Title",
   props: {
-    fixed: { type: Boolean, default: false },
+    fixed: { type: Boolean, default: true },
     btnBack: { type: Boolean, default: false },
     btnBackText: { type: String, default: null },
     title: { type: String, default: null },

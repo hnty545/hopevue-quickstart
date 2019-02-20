@@ -13,10 +13,18 @@
 </template>
 
 <script>
-import { MyLoading } from "./components";
+import MyLoading from "./components/common/MyLoading";
 export default {
   components: {
     MyLoading
+  },
+  created() {
+    //TODO:有待赋值
+    // this.$store.commit("common/setSystemInfo", res);
+    // self.$store.commit("common/setUiInfo", {
+    //   titleHeight: TITLE_HEIGHT,
+    //   containerHeight: res.windowHeight - TITLE_HEIGHT
+    // });
   }
 };
 </script>

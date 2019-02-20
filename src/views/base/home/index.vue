@@ -1,18 +1,18 @@
 <template>
   <div>
     <MyTitle title="主界面" :btns="[{icon:'arrow',onClick:goto}]"/>
-    <div class="ui-container ui-form content">
-      <van-row class="info-row">
+    <MyContainer custom-class="ui-form ui-inner-info-content">
+      <van-row class="ui-inner-info-row">
         <van-col span="24">{{today}}</van-col>
       </van-row>
-      <van-row class="info-row">
+      <van-row class="ui-inner-info-row">
         <van-col span="24">{{getToday}}</van-col>
       </van-row>
-      <van-row class="info-row">
+      <van-row class="ui-inner-info-row">
         <van-col span="24">{{talk}}</van-col>
       </van-row>
-      <van-button type="primary" @click="onSayHello" class="info-row">sayHello</van-button>
-    </div>
+      <van-button type="primary" @click="onSayHello" class="ui-inner-info-row">sayHello</van-button>
+    </MyContainer>
   </div>
 </template>
 
@@ -24,7 +24,8 @@ Vue.use(Row)
   .use(Col)
   .use(Button)
   .use(Notify);
-import { MyTitle } from "../../../components";
+import MyTitle from "../../../components/common/MyTitle";
+import MyContainer from "../../../components/common/MyContainer";
 import NotifyHelper from "../../../plugins/NotifyHelper";
 import LoadingTask from "../../../plugins/LoadingTask";
 NotifyHelper.initNotify(Notify);
@@ -34,7 +35,8 @@ export default {
   name: "home",
   mounted() {},
   components: {
-    MyTitle
+    MyTitle,
+    MyContainer
   },
   computed: {
     ...mapState("common", ["today"]),
@@ -62,11 +64,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.content {
+<style lang="scss">
+.ui-inner-info-content {
   text-align: center;
 }
-.info-row {
+.ui-inner-info-row {
   margin: 5px;
   font-size: 14px;
 }

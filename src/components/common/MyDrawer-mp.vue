@@ -1,5 +1,5 @@
 <template>
-  <van-popup v-model="show" position="right">
+  <van-popup :show="show" position="right">
     <slot></slot>
   </van-popup>
 </template>

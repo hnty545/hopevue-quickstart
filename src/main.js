@@ -13,7 +13,7 @@ import VueCookies from 'vue-cookies';
 import 'amfe-flexible';
 import './style/normalize.css';
 import './style/vant-var.less';
-import './style/ui-common.scss';
+import './style/ui-common.less';
 
 //注册全局方法
 Object.keys(filters).forEach(key => {

@@ -7,11 +7,7 @@ import Vue from 'vue';
 import App from './App-mp';
 import MpvueRouterPatch from 'mpvue-router-patch';
 import store from './store';
-import NetHelper from './net/NetHelper';
-import './style/ui-common.scss';
-
-//初始化网络控件
-NetHelper.init();
+import './style/ui-common.less';
 
 Vue.use(MpvueRouterPatch);
 

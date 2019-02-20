@@ -1,20 +1,21 @@
 <template>
   <div>
-    <MyTitle title="主界面" :btns="[{icon:'arrow',onClick:goto}]"/>
-    <div class="ui-container ui-form content">
-      <van-row class="info-row">
+    <MyTitle title="主界面"/>
+    <MyContainer custom-class="ui-form ui-inner-info-content">
+      <van-row custom-class="ui-inner-info-row">
         <van-col span="24">{{today}}</van-col>
       </van-row>
-      <van-row class="info-row">
+      <van-row custom-class="ui-inner-info-row">
         <van-col span="24">{{getToday}}</van-col>
       </van-row>
-      <van-row class="info-row">
+      <van-row custom-class="ui-inner-info-row">
         <van-col span="24">{{talk}}</van-col>
       </van-row>
-      <van-button type="primary" @click="onSayHello" class="info-row">sayHello</van-button>
-    </div>
+      <van-button type="primary" @click="onSayHello" custom-class="ui-inner-info-row">sayHello</van-button>
+    </MyContainer>
     <van-notify id="van-notify"/>
     <MyLoading/>
+    <MyFloatActionButton color="#fff" bgcolor="#1989fa" icon="arrow" @click="goto"/>
   </div>
 </template>
 
@@ -22,7 +23,9 @@
 import Vue from "vue"; // eslint-disable-line
 import { mapState, mapActions, mapMutations, mapGetters } from "vuex"; // eslint-disable-line
 import MyTitle from "../../../components/common/MyTitle-mp";
+import MyContainer from "../../../components/common/MyContainer-mp";
 import MyLoading from "../../../components/common/MyLoading-mp";
+import MyFloatActionButton from "../../../components/common/MyFloatActionButton-mp";
 import Notify from "../../../../static/vant-weapp/notify/notify";
 import NotifyHelper from "../../../plugins/NotifyHelper";
 import LoadingTask from "../../../plugins/LoadingTask";
@@ -30,14 +33,13 @@ NotifyHelper.initNotify(Notify);
 LoadingTask.initNotify(Notify);
 
 export default {
-  config: {
-    navigationBarTitleText: "主界面"
-  },
   name: "home",
   mounted() {},
   components: {
     MyTitle,
-    MyLoading
+    MyContainer,
+    MyLoading,
+    MyFloatActionButton
   },
   computed: {
     ...mapState("common", ["today"]),
@@ -67,11 +69,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.content {
+<style lang="scss">
+.ui-inner-info-content {
   text-align: center;
 }
-.info-row {
+.ui-inner-info-row {
   margin: 5px;
   font-size: 14px;
 }

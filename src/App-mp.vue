@@ -1,12 +1,14 @@
 <script>
+import { TITLE_HEIGHT } from "./config/constants";
 export default {
   config: {
     pages: ["views/base/home/main", "views/util/publicweb/main"],
     window: {
-      navigationBarTitleText: "小程序标题",
+      navigationBarTitleText: "hopevue",
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
-      navigationBarTextStyle: "black"
+      navigationBarTextStyle: "black",
+      navigationStyle: "custom"
     },
     usingComponents: {
       "van-button": "/static/vant-weapp/button/index",
@@ -16,7 +18,13 @@ export default {
       "van-icon": "/static/vant-weapp/icon/index",
       "van-nav-bar": "/static/vant-weapp/nav-bar/index",
       "van-notify": "/static/vant-weapp/notify/index",
-      "van-loading": "/static/vant-weapp/loading/index"
+      "van-loading": "/static/vant-weapp/loading/index",
+      "van-cell-group": "/static/vant-weapp/cell-group/index",
+      "van-field": "/static/vant-weapp/field/index",
+      "van-checkbox": "/static/vant-weapp/checkbox/index",
+      "van-icon": "/static/vant-weapp/icon/index",
+      "van-datetime-picker": "/static/vant-weapp/datetime-picker/index",
+      "van-picker": "/static/vant-weapp/picker/index"
     }
   },
   created() {
@@ -26,6 +34,19 @@ export default {
     // wx.setStorageSync("logs", logs);
     // // eslint-disable-next-line
     // console.log("app created and cache logs by setStorageSync");
+    try {
+      const res = wx.getSystemInfoSync();
+      this.$store.commit("common/setSystemInfo", {
+        isIpx: res.model.search("iPhone X") != -1 ? true : false,
+        ...res
+      });
+      this.$store.commit("common/setUiInfo", {
+        titleHeight: TITLE_HEIGHT,
+        containerHeight: res.windowHeight - TITLE_HEIGHT
+      });
+    } catch (e) {
+      console.log("getSystemInfoSync failed");
+    }
   }
 };
 </script>

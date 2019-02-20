@@ -28,9 +28,12 @@ export const THEME = {
 export const PAGE_SIZE = 15;
 
 export const COOKIES_KEY = {
+  sessionid: 'sid',
   userName: 'un',
   passWord: 'pw',
-  savePassword: 'sp'
+  savePassword: 'sp',
+  saveTime: 'st',
+  expireTimes: 'et'
 };
 
-export const TITLE_HEIGHT = 48;
+export const TITLE_HEIGHT = 46;
