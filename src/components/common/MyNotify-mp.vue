@@ -12,7 +12,7 @@ export default {
   computed: {
     ...mapState("common", ["systemInfo"]),
     customStyle: function() {
-      return "padding-top:" + this.systemInfo.statusBarHeight + "px;";
+      return "padding-top:" + (this.systemInfo.statusBarHeight + 6) + "px;";
     }
   },
   methods: {},
