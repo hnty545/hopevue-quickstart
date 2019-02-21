@@ -1,5 +1,5 @@
 <template>
-  <div :class="_class">
+  <div :class="_customClass" :style="customStyle">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script>
 import Vue from "vue";
 import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { TITLE_HEIGHT } from "../../config/constants";
 export default {
   name: "Container",
   props: {
@@ -14,14 +15,15 @@ export default {
   },
   computed: {
     ...mapState("common", ["systemInfo"]),
-    _class: function() {
+    customStyle: function() {
       return (
-        (this.systemInfo.isIpx
-          ? "ui-inner-container-ipx"
-          : "ui-inner-container") +
-        " " +
-        this.customClass
+        "margin-top:" +
+        (this.systemInfo.statusBarHeight + 4 + TITLE_HEIGHT) +
+        "px;"
       );
+    },
+    _customClass: function() {
+      return this.customClass;
     }
   },
   methods: {}
@@ -29,10 +31,4 @@ export default {
 </script>
 
 <style lang="scss">
-.ui-inner-container {
-  margin-top: 70px;
-}
-.ui-inner-container-ipx {
-  margin-top: 90px;
-}
 </style>

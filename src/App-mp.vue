@@ -36,10 +36,7 @@ export default {
     // console.log("app created and cache logs by setStorageSync");
     try {
       const res = wx.getSystemInfoSync();
-      this.$store.commit("common/setSystemInfo", {
-        isIpx: res.model.search("iPhone X") != -1 ? true : false,
-        ...res
-      });
+      this.$store.commit("common/setSystemInfo", res);
       this.$store.commit("common/setUiInfo", {
         titleHeight: TITLE_HEIGHT,
         containerHeight: res.windowHeight - TITLE_HEIGHT

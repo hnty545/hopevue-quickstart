@@ -1,5 +1,5 @@
 <template>
-  <van-notify id="van-notify" :paddingTop="systemInfo.isIpx?'44px;':'24px;'"/>
+  <van-notify id="van-notify" :custom-style="customStyle"/>
 </template>
 
 <script>
@@ -10,7 +10,10 @@ export default {
   name: "Notify",
   props: {},
   computed: {
-    ...mapState("common", ["systemInfo"])
+    ...mapState("common", ["systemInfo"]),
+    customStyle: function() {
+      return "padding-top:" + this.systemInfo.statusBarHeight + "px;";
+    }
   },
   methods: {},
   Notify: Notify

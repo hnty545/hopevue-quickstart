@@ -1,4 +1,4 @@
-<view class="custom-class van-nav-bar {{ border ? 'van-hairline--bottom' : '' }} {{ fixed ? 'van-nav-bar--fixed' : '' }}" style="z-index: {{ zIndex }}">
+<view class="custom-class van-nav-bar {{ border ? 'van-hairline--bottom' : '' }} {{ fixed ? 'van-nav-bar--fixed' : '' }}" style="z-index: {{ zIndex }};{{ customStyle }}">
   <view class="van-nav-bar__left" bind:tap="onClickLeft">
     <block wx:if="{{ leftArrow || leftText }}">
       <van-icon wx:if="{{ leftArrow }}" size="16px" name="arrow-left" color="{{ leftArrowColor }}" custom-class="van-nav-bar__arrow" />

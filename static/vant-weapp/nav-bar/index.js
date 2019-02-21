@@ -8,6 +8,7 @@ VantComponent({
     rightText: String,
     leftArrow: Boolean,
     leftArrowColor: String,
+    customStyle: String,
     border: {
       type: Boolean,
       value: true

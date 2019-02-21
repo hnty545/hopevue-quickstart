@@ -5,7 +5,8 @@
     :left-arrow="btnBack"
     :left-text="btnBackText"
     :left-arrow-color="'#fff'"
-    :custom-class="systemInfo.isIpx?'ui-inner-nav-bar-ipx':'ui-inner-nav-bar'"
+    :custom-class="'ui-inner-nav-bar'"
+    :custom-style="customStyle"
     @clickLeft="_goBack"
   >
     <van-icon
@@ -34,7 +35,10 @@ export default {
     btns: { type: Array, default: null }
   },
   computed: {
-    ...mapState("common", ["systemInfo"])
+    ...mapState("common", ["systemInfo"]),
+    customStyle: function() {
+      return "padding-top:" + (this.systemInfo.statusBarHeight + 4) + "px;";
+    }
   },
   methods: {
     _goBack() {
@@ -55,10 +59,5 @@ export default {
 .ui-inner-nav-bar {
   background-color: #1989fa !important;
   color: #fff !important;
-  padding-top: 24px;
-}
-.ui-inner-nav-bar-ipx {
-  @extend .ui-inner-nav-bar;
-  padding-top: 44px;
 }
 </style>

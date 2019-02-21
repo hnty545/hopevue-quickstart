@@ -15,10 +15,7 @@ VantComponent({
       type: Number,
       value: 3000
     },
-    paddingTop: {
-      type: String,
-      value: '0px'
-    }
+    customStyle: String
   },
   methods: {
     show: function show() {
