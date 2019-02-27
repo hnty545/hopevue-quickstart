@@ -1,5 +1,5 @@
 <template>
-  <div :class="customClass" :style="customStyle">
+  <div :class="_customClass" :style="customStyle">
     <slot></slot>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     customStyle: function() {
       return "margin-top:" + TITLE_HEIGHT + "px";
     },
-    customClass: function() {
+    _customClass: function() {
       return this.customClass;
     }
   },
