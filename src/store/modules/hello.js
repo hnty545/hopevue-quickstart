@@ -22,7 +22,7 @@ export const hello = {
           let ret = 'hello ' + name;
           console.log('hello');
           resolve(ret);
-        }, 3000);
+        }, 1000);
       }).then(ret => {
         commit('setTalk', ret);
         return ret; //方便页面对接口返回做处理，此处可以返回结果

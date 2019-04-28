@@ -1,5 +1,9 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+var safe_area_1 = require('../mixins/safe-area');
+component_1.VantComponent({
+  mixins: [safe_area_1.safeArea({ safeAreaInsetTop: true })],
   classes: ['title-class'],
   props: {
     title: String,
@@ -15,14 +19,14 @@ VantComponent({
     },
     zIndex: {
       type: Number,
-      value: 1
+      value: 120
     }
   },
   methods: {
-    onClickLeft: function onClickLeft() {
+    onClickLeft: function() {
       this.$emit('clickLeft');
     },
-    onClickRight: function onClickRight() {
+    onClickRight: function() {
       this.$emit('clickRight');
     }
   }

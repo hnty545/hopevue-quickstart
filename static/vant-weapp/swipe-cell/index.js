@@ -1,144 +1,110 @@
-import { VantComponent } from '../common/component';
-import { touch } from '../mixins/touch';
-var THRESHOLD = 0.15;
-VantComponent({
-  props: {
-    disabled: Boolean,
-    leftWidth: {
-      type: Number,
-      value: 0
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+var touch_1 = require("../mixins/touch");
+var THRESHOLD = 0.3;
+component_1.VantComponent({
+    props: {
+        disabled: Boolean,
+        leftWidth: {
+            type: Number,
+            value: 0
+        },
+        rightWidth: {
+            type: Number,
+            value: 0
+        },
+        asyncClose: Boolean
     },
-    rightWidth: {
-      type: Number,
-      value: 0
+    mixins: [touch_1.touch],
+    data: {
+        catchMove: true
     },
-    asyncClose: Boolean
-  },
-  mixins: [touch],
-  data: {
-    offset: 0,
-    draging: false
-  },
-  computed: {
-    wrapperStyle: function wrapperStyle() {
-      var _this$data = this.data,
-          offset = _this$data.offset,
-          draging = _this$data.draging;
-      var transform = "translate3d(" + offset + "px, 0, 0)";
-      var transition = draging ? 'none' : '.6s cubic-bezier(0.18, 0.89, 0.32, 1)';
-      return "\n        -webkit-transform: " + transform + ";\n        -webkit-transition: " + transition + ";\n        transform: " + transform + ";\n        transition: " + transition + ";\n      ";
+    created: function () {
+        this.offset = 0;
+    },
+    methods: {
+        open: function (position) {
+            var _a = this.data, leftWidth = _a.leftWidth, rightWidth = _a.rightWidth;
+            var offset = position === 'left' ? leftWidth : -rightWidth;
+            this.swipeMove(offset);
+        },
+        close: function () {
+            this.swipeMove(0);
+        },
+        swipeMove: function (offset) {
+            if (offset === void 0) { offset = 0; }
+            this.offset = offset;
+            var transform = "translate3d(" + offset + "px, 0, 0)";
+            var transition = this.draging
+                ? 'none'
+                : '.6s cubic-bezier(0.18, 0.89, 0.32, 1)';
+            this.set({
+                wrapperStyle: "\n        -webkit-transform: " + transform + ";\n        -webkit-transition: " + transition + ";\n        transform: " + transform + ";\n        transition: " + transition + ";\n      "
+            });
+        },
+        swipeLeaveTransition: function () {
+            var _a = this.data, leftWidth = _a.leftWidth, rightWidth = _a.rightWidth;
+            var offset = this.offset;
+            if (rightWidth > 0 && -offset > rightWidth * THRESHOLD) {
+                this.open('right');
+            }
+            else if (leftWidth > 0 && offset > leftWidth * THRESHOLD) {
+                this.open('left');
+            }
+            else {
+                this.swipeMove(0);
+            }
+        },
+        startDrag: function (event) {
+            if (this.data.disabled) {
+                return;
+            }
+            this.draging = true;
+            this.startOffset = this.offset;
+            this.firstDirection = '';
+            this.touchStart(event);
+        },
+        noop: function () { },
+        onDrag: function (event) {
+            if (this.data.disabled) {
+                return;
+            }
+            this.touchMove(event);
+            if (!this.firstDirection) {
+                this.firstDirection = this.direction;
+                this.set({ catchMove: this.firstDirection === 'horizontal' });
+            }
+            if (this.firstDirection === 'vertical') {
+                return;
+            }
+            var _a = this.data, leftWidth = _a.leftWidth, rightWidth = _a.rightWidth;
+            var offset = this.startOffset + this.deltaX;
+            if ((rightWidth > 0 && -offset > rightWidth) ||
+                (leftWidth > 0 && offset > leftWidth)) {
+                return;
+            }
+            this.swipeMove(offset);
+        },
+        endDrag: function () {
+            if (this.data.disabled) {
+                return;
+            }
+            this.draging = false;
+            this.swipeLeaveTransition();
+        },
+        onClick: function (event) {
+            var _a = event.currentTarget.dataset.key, position = _a === void 0 ? 'outside' : _a;
+            this.$emit('click', position);
+            if (!this.offset) {
+                return;
+            }
+            if (this.data.asyncClose) {
+                this.$emit('close', { position: position, instance: this });
+            }
+            else {
+                this.swipeMove(0);
+            }
+        }
     }
-  },
-  methods: {
-    onTransitionend: function onTransitionend() {
-      this.swipe = false;
-    },
-    open: function open(position) {
-      var _this$data2 = this.data,
-          leftWidth = _this$data2.leftWidth,
-          rightWidth = _this$data2.rightWidth;
-      var offset = position === 'left' ? leftWidth : -rightWidth;
-      this.swipeMove(offset);
-      this.resetSwipeStatus();
-    },
-    close: function close() {
-      this.set({
-        offset: 0
-      });
-    },
-    resetSwipeStatus: function resetSwipeStatus() {
-      this.swiping = false;
-      this.opened = true;
-    },
-    swipeMove: function swipeMove(offset) {
-      if (offset === void 0) {
-        offset = 0;
-      }
-
-      this.set({
-        offset: offset
-      });
-      offset && (this.swiping = true);
-      !offset && (this.opened = false);
-    },
-    swipeLeaveTransition: function swipeLeaveTransition(direction) {
-      var _this$data3 = this.data,
-          offset = _this$data3.offset,
-          leftWidth = _this$data3.leftWidth,
-          rightWidth = _this$data3.rightWidth;
-      var threshold = this.opened ? 1 - THRESHOLD : THRESHOLD; // right
-
-      if (direction > 0 && -offset > rightWidth * threshold && rightWidth > 0) {
-        this.open('right'); // left
-      } else if (direction < 0 && offset > leftWidth * threshold && leftWidth > 0) {
-        this.open('left');
-      } else {
-        this.swipeMove();
-      }
-    },
-    startDrag: function startDrag(event) {
-      if (this.data.disabled) {
-        return;
-      }
-
-      this.set({
-        draging: true
-      });
-      this.touchStart(event);
-
-      if (this.opened) {
-        this.startX -= this.data.offset;
-      }
-    },
-    onDrag: function onDrag(event) {
-      if (this.data.disabled) {
-        return;
-      }
-
-      this.touchMove(event);
-      var deltaX = this.deltaX;
-      var _this$data4 = this.data,
-          leftWidth = _this$data4.leftWidth,
-          rightWidth = _this$data4.rightWidth;
-
-      if (deltaX < 0 && (-deltaX > rightWidth || !rightWidth) || deltaX > 0 && (deltaX > leftWidth || deltaX > 0 && !leftWidth)) {
-        return;
-      }
-
-      if (this.direction === 'horizontal') {
-        this.swipeMove(deltaX);
-      }
-    },
-    endDrag: function endDrag() {
-      if (this.data.disabled) {
-        return;
-      }
-
-      this.set({
-        draging: false
-      });
-
-      if (this.swiping) {
-        this.swipeLeaveTransition(this.data.offset > 0 ? -1 : 1);
-      }
-    },
-    onClick: function onClick(event) {
-      var _event$currentTarget$ = event.currentTarget.dataset.key,
-          position = _event$currentTarget$ === void 0 ? 'outside' : _event$currentTarget$;
-      this.$emit('click', position);
-
-      if (!this.data.offset) {
-        return;
-      }
-
-      if (this.data.asyncClose) {
-        this.$emit('close', {
-          position: position,
-          instance: this
-        });
-      } else {
-        this.swipeMove(0);
-      }
-    }
-  }
 });

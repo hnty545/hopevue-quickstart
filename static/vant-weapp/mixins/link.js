@@ -1,24 +1,20 @@
-export var link = Behavior({
-  properties: {
-    url: String,
-    linkType: {
-      type: String,
-      value: 'navigateTo'
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.link = Behavior({
+    properties: {
+        url: String,
+        linkType: {
+            type: String,
+            value: 'navigateTo'
+        }
+    },
+    methods: {
+        jumpLink: function (urlKey) {
+            if (urlKey === void 0) { urlKey = 'url'; }
+            var url = this.data[urlKey];
+            if (url) {
+                wx[this.data.linkType]({ url: url });
+            }
+        }
     }
-  },
-  methods: {
-    jumpLink: function jumpLink(urlKey) {
-      if (urlKey === void 0) {
-        urlKey = 'url';
-      }
-
-      var url = this.data[urlKey];
-
-      if (url) {
-        wx[this.data.linkType]({
-          url: url
-        });
-      }
-    }
-  }
 });

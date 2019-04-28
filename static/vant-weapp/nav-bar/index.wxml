@@ -1,4 +1,5 @@
-<view class="custom-class van-nav-bar {{ border ? 'van-hairline--bottom' : '' }} {{ fixed ? 'van-nav-bar--fixed' : '' }}" style="z-index: {{ zIndex }};{{ customStyle }}">
+<wxs src="../wxs/utils.wxs" module="utils" />
+<view class="{{ utils.bem('nav-bar', { fixed }) }} custom-class {{ border ? 'van-hairline--bottom' : '' }}" style="z-index: {{ zIndex }}; {{ customStyle }}; {{ safeAreaInsetTop ? 'padding-top: ' + statusBarHeight + 'px;' : '' }}">
   <view class="van-nav-bar__left" bind:tap="onClickLeft">
     <block wx:if="{{ leftArrow || leftText }}">
       <van-icon wx:if="{{ leftArrow }}" size="16px" name="arrow-left" color="{{ leftArrowColor }}" custom-class="van-nav-bar__arrow" />

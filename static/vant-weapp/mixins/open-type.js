@@ -1,25 +1,27 @@
-export var openType = Behavior({
-  properties: {
-    openType: String
-  },
-  methods: {
-    bindGetUserInfo: function bindGetUserInfo(event) {
-      this.$emit('getuserinfo', event.detail);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.openType = Behavior({
+    properties: {
+        openType: String
     },
-    bindContact: function bindContact(event) {
-      this.$emit('contact', event.detail);
-    },
-    bindGetPhoneNumber: function bindGetPhoneNumber(event) {
-      this.$emit('getphonenumber', event.detail);
-    },
-    bindError: function bindError(event) {
-      this.$emit('error', event.detail);
-    },
-    bindLaunchApp: function bindLaunchApp(event) {
-      this.$emit('launchapp', event.detail);
-    },
-    bindOpenSetting: function bindOpenSetting(event) {
-      this.$emit('opensetting', event.detail);
+    methods: {
+        bindGetUserInfo: function (event) {
+            this.$emit('getuserinfo', event.detail);
+        },
+        bindContact: function (event) {
+            this.$emit('contact', event.detail);
+        },
+        bindGetPhoneNumber: function (event) {
+            this.$emit('getphonenumber', event.detail);
+        },
+        bindError: function (event) {
+            this.$emit('error', event.detail);
+        },
+        bindLaunchApp: function (event) {
+            this.$emit('launchapp', event.detail);
+        },
+        bindOpenSetting: function (event) {
+            this.$emit('opensetting', event.detail);
+        },
     }
-  }
 });

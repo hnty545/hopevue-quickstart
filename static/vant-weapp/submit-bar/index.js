@@ -1,40 +1,50 @@
-import { VantComponent } from '../common/component';
-import { iphonex } from '../mixins/iphonex';
-VantComponent({
-  mixins: [iphonex],
-  classes: ['bar-class', 'price-class', 'button-class'],
-  props: {
-    tip: null,
-    type: Number,
-    price: null,
-    label: String,
-    loading: Boolean,
-    disabled: Boolean,
-    buttonText: String,
-    currency: {
-      type: String,
-      value: '¥'
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+var safe_area_1 = require("../mixins/safe-area");
+component_1.VantComponent({
+    mixins: [safe_area_1.safeArea()],
+    classes: [
+        'bar-class',
+        'price-class',
+        'button-class'
+    ],
+    props: {
+        tip: null,
+        type: Number,
+        price: null,
+        label: String,
+        loading: Boolean,
+        disabled: Boolean,
+        buttonText: String,
+        currency: {
+            type: String,
+            value: '¥'
+        },
+        buttonType: {
+            type: String,
+            value: 'danger'
+        },
+        decimalLength: {
+            type: Number,
+            value: 2
+        }
     },
-    buttonType: {
-      type: String,
-      value: 'danger'
-    }
-  },
-  computed: {
-    hasPrice: function hasPrice() {
-      return typeof this.data.price === 'number';
+    computed: {
+        hasPrice: function () {
+            return typeof this.data.price === 'number';
+        },
+        priceStr: function () {
+            return (this.data.price / 100).toFixed(this.data.decimalLength);
+        },
+        tipStr: function () {
+            var tip = this.data.tip;
+            return typeof tip === 'string' ? tip : '';
+        }
     },
-    priceStr: function priceStr() {
-      return (this.data.price / 100).toFixed(2);
-    },
-    tipStr: function tipStr() {
-      var tip = this.data.tip;
-      return typeof tip === 'string' ? tip : '';
+    methods: {
+        onSubmit: function (event) {
+            this.$emit('submit', event.detail);
+        }
     }
-  },
-  methods: {
-    onSubmit: function onSubmit(event) {
-      this.$emit('submit', event.detail);
-    }
-  }
 });

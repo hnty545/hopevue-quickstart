@@ -1,5 +1,5 @@
 <template>
-  <van-notify id="van-notify" :custom-style="customStyle"/>
+  <van-notify id="van-notify" zIndex="120" :custom-style="customStyle"/>
 </template>
 
 <script>
