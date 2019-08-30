@@ -17,7 +17,7 @@ export default {
     ...mapState("common", ["systemInfo"]),
     customStyle: function() {
       return (
-        "margin-top:" +
+        "padding-top:" +
         (this.systemInfo.statusBarHeight + 4 + TITLE_HEIGHT) +
         "px;"
       );

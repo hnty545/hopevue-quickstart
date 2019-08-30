@@ -16,7 +16,7 @@ export default {
   computed: {
     ...mapState("common", ["systemInfo"]),
     customStyle: function() {
-      return "margin-top:" + TITLE_HEIGHT + "px";
+      return "padding-top:" + TITLE_HEIGHT + "px";
     },
     _customClass: function() {
       return this.customClass;
